@@ -1,0 +1,15 @@
+# Copyright the Hyperledger Fabric contributors. All rights reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+steps:
+    - script: |
+        curl -sL https://deb.nodesource.com/setup_10.x  | bash -
+        sudo apt-get -y install nodejs
+        npm install -g license-check-and-add@3.0.3
+      displayName: Install Dependencies
+    - task: GoTool@0
+      inputs:
+        version: $(GOVER)
+        goPath:  $(GOPATH)
+      displayName: Install GoLang
