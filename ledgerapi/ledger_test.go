@@ -1,16 +1,13 @@
+// Copyright the Hyperledger Fabric contributors. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
 package ledgerapi
 
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 	"github.com/stretchr/testify/assert"
 )
-
-type MockContext struct {
-	contractapi.TransactionContextInterface
-	prop string
-}
 
 func TestGetLedger(t *testing.T) {
 	ctx := new(MockContext)

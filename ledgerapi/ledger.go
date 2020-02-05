@@ -1,3 +1,6 @@
+// Copyright the Hyperledger Fabric contributors. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
 package ledgerapi
 
 import "github.com/hyperledger/fabric-contract-api-go/contractapi"
@@ -5,7 +8,7 @@ import "github.com/hyperledger/fabric-contract-api-go/contractapi"
 // LedgerInterface defines functions of a ledger
 type LedgerInterface interface {
 	// GetCollection returns a collection with the passed name
-	GetCollection(name string) CollectionInterface
+	GetCollection(string) CollectionInterface
 
 	// GetDefaultCollection returns a collection representing the world state
 	GetDefaultCollection() CollectionInterface
