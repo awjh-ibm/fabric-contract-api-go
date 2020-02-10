@@ -31,10 +31,13 @@ func configureCollection() *Collection {
 func TestGetState(t *testing.T) {
 	collection := configureCollection()
 
-	si, err := collection.GetState("readbad")
+	expectedState := new(State)
+	expectedState.ctx = collection.ctx
+	expectedState.collection = collection.name
+	expectedState.key = "somekey"
 
-	assert.EqualError(t, err, fmt.Sprintf("Failed to get state readbad in collection mycollection. %s", getStateError), "should error when stub GetState errors")
-	assert.Nil(t, si, "should not return state interface when stub GetState fails to return a value")
+	state := collection.GetState("somekey")
+	assert.Equal(t, expectedState, state, "should return a state configured by the collection")
 }
 
 func TestGetStates(t *testing.T) {

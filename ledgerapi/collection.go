@@ -15,12 +15,14 @@ const WorldStateIdentifier = "worldstate"
 
 // CollectionInterface placeholder
 type CollectionInterface interface {
-	GetState(string) (StateInterface, error)
+	GetState(string) StateInterface
 	GetStates(QueryInterface) (StateIteratorInterface, error)
 	CreateState(string, []byte) error
 	UpdateState(string, []byte) error
 	DeleteState(string) error
 }
+
+// TODO - SOMEHTING SEEMS REALLY WRONG THAT CREATE, UPDATE USE BYTES BUT GETSTATE RETURNS A STATE
 
 // Collection placeholder
 type Collection struct {
@@ -29,16 +31,13 @@ type Collection struct {
 }
 
 // GetState placeholder
-func (c *Collection) GetState(key string) (StateInterface, error) {
-	errMsg := fmt.Sprintf("Failed to get state %s in collection %s.", key, c.name)
+func (c *Collection) GetState(key string) StateInterface {
+	s := new(State)
+	s.key = key
+	s.ctx = c.ctx
+	s.collection = c.name
 
-	_, err := c.ctx.GetStub().GetState(key)
-
-	if err != nil {
-		return nil, fmt.Errorf("%s %s", errMsg, err.Error())
-	}
-
-	return nil, errors.New("Not yet implemented")
+	return s
 }
 
 // GetStates placeholder
